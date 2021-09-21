@@ -85,5 +85,5 @@ function reqListe(url, type) {
 }
 
 function reqDetail(event, type) {
-    console.log(event.target.dataset.url, type)
+    console.log(event.target.dataset.url || event.target.parentElement.dataset.url, type)
 }
