@@ -1,0 +1,48 @@
+:root {
+    --color1:chartreuse;
+    --color2:darkorchid;
+    background-color: lightskyblue;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+#menu>* {
+    border:solid var(--color1) 1px;
+    color: var(--color2);
+    background-color: var(--color1);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+}
+#menu>*:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+    cursor: pointer;
+}
+#liste {
+    width:90%;
+    margin: 30px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border:solid var(--color1) 1px;
+    color: var(--color2);
+    font-weight: bold;
+}
+.ligne,.ligne2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 90%;
+}
+.ligne:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+    cursor: pointer;
+}
