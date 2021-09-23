@@ -142,5 +142,70 @@ function reqListe(url, type) {
  * @param {String} type - id du bouton sur lequel on a cliqué (Menu)
  */
 function reqDetail(event, type) {
-    console.log(event.target.dataset.url || event.target.parentElement.dataset.url, type)
+    let monUrl = event.target.dataset.url || event.target.parentElement.dataset.url
+    // console.log(event.target.dataset.url || event.target.parentElement.dataset.url, type)
+    /**
+     * Switch pour testser le type d'affichage détaillé
+     */
+    switch (type) {
+        case "berry":
+            reqDetailBerry(monUrl)
+            break
+        default:
+            /**
+             * default si aucun case ne correspond dans le switch
+             */
+            console.log(type)
+            $("#detail").html("Fonction inconnue :" + type)
+            break;
+
+    }
+    /*
+    
+    --------------- Equivalent du switch en if else if else -------------------
+        if (type === "berry") {
+            reqDetailBerry(monUrl)
+        }
+        else if (type === "contest") {
+            reqDetailContest(monUrl)
+        }
+        else {
+            console.log(type)
+            $("#detail").html("Fonction inconnue :" + type)
+            break;
+        }
+    */
+}
+
+/**
+ * Fonction qui mets en forme la fiche détaillée d'une berry
+ * @param {String} url - url de la fiche détaillé de la berry sur l'api 
+ */
+function reqDetailBerry(url) {
+    $.get(url, (data) => {
+        console.log(data)
+        let texteTmp = ""
+        texteTmp += '<div class="ligne2"><div>name :</div><div>' + data.name + "</div></div>"
+        texteTmp += '<div class="ligne2"><div>size :</div><div>' + data.size + "</div></div>"
+        texteTmp += '<br>'
+        texteTmp += '<div class="ligne2"><div>firmness :</div><div>' + data.firmness.name + "</div></div>"
+        /**
+         * flavor est un tableau donc on fait une boucle for
+         */
+        for (let i in data.flavors) {
+            texteTmp += '<div class="ligne2"><div>flavor :</div><div>' + data.flavors[i].flavor.name + '/' + data.flavors[i].potency + "</div></div>"
+
+        }
+        texteTmp += '<br>'
+        texteTmp += '<div class="ligne2"><div>item :</div><div>' + data.item.name + "</div></div>"
+        texteTmp += '<div class="ligne2"><div>max harvest :</div><div>' + data.max_harvest + "</div></div>"
+        texteTmp += '<div class="ligne2"><div>natural gift power :</div><div>' + data.natural_gift_power + "</div></div>"
+        texteTmp += '<div class="ligne2"><div>growth time :</div><div>' + data.growth_time + "</div></div>"
+
+        /**
+         * On charge le texte HTML dans la balise détail
+         */
+        $("#detail").html(texteTmp)
+    })
+
 }

@@ -23,7 +23,7 @@
     color: var(--color1);
     cursor: pointer;
 }
-#liste {
+#liste,#detail {
     width:90%;
     margin: 30px auto;
     padding: 10px;
@@ -34,6 +34,10 @@
     border:solid var(--color1) 1px;
     color: var(--color2);
     font-weight: bold;
+}
+#detail>br{
+    height: 20px;
+    margin: 10px;
 }
 .ligne,.ligne2 {
     display: flex;
